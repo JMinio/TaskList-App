@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# APLICACION DE LISTA DE TAREAS CON REACT JS | TAKSLIST APLICATION REACT JS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## INTRODUCCION
 
-## Available Scripts
+La presente es una aplicacion creada con REACT JS para el enlistado de tareas por hacer en el dia a dia o a largo plazo ¿Por que?
 
-In the project directory, you can run:
+La aplicacion cuenta con LocalStorage para mantener guardada la información incluso si el navegador se cierra.
 
-### `npm start`
+## HOOKS
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Se utilizaron los hooks:
+• useState para guardar el enlistado de tareas ingresadas mediante el input principal.
+• useEffect para el renderizado de la aplicacion sin ninguna dependencia.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## EXPLICACION DE COMPONENTES
 
-### `npm test`
+### App
+Engloba toda la aplicacion, por ende es donde mas logica se encuentra con la utilizacion del localStorage.
+• Funciones:
+  ♦ createNewTask: Como lo dice el nombre, crea la tarea solo si no se encuentra la misma (no permite duplicados)
+  En caso de no estar, la agrega con setTaskItems y le agrega el valor "done: false" por defecto.
+  ♦ toggleTask: Funcion utilizada para cambiar el valor true / false, es decir, si esta sin hacer(false) pasa a estar hecha (true), y viceversa. 
+  ♦ handleDeleteTask: con el metodo filter crea una nueva lista eliminando a todas las tareas que ya esten hechas.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### TaskTable 
+Es el componente presentacional donde van a estar pintadas las tareas.
+El mismo es llamado 2 veces y utilizado para mostrar las tareas hechas y no hechas.
+Se hace una validacion para corroborar que tareas estan hechas y cuales no.
 
-### `npm run build`
+### TaskRow
+Es un componente presentacional que pinta las tareas en filas dentro de la tabla mencionada anteriormente.
+Tiene una fila y una columna donde se pinta del lado izquierdo el nombre de la tarea (task.name) y del lado derecho el checkbox que al ser cambiado llama a la funcion toggleTask para dar aviso de que la tarea ya esta hecha.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### TaskCreator
+Es el componente donde se encuentra el imput para ingresar las tareas por hacer.
+Se utiliza el useState para guardar las nuevas tareas.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+• Funciones:
+  ♦ handleSubmit: utilizamos preventDefault para que no reinicie la pagina al presionar enter.
+  Se guarda la tarea y se limpia el input para el ingreso de una nueva tarea.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### HideControl
+Es el componente que se utiliza para ocultar las tareas hechas y eliminarlas.
 
-### `npm run eject`
+• Funciones: 
+  ♦ handleDelete: hace el llamado a handleDeleteTask proveniente de props desde App.jsx para eliminar las tareas (Ventana de confirmacion para eliminarlas)
+  
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
